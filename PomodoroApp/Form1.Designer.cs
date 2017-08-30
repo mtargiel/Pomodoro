@@ -29,11 +29,76 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.startButton = new System.Windows.Forms.Button();
+            this.timeLabel = new System.Windows.Forms.Label();
+            this.timer = new System.Windows.Forms.Timer(this.components);
+            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.breakLabel = new System.Windows.Forms.Label();
+            this.SuspendLayout();
+            // 
+            // startButton
+            // 
+            this.startButton.Location = new System.Drawing.Point(12, 12);
+            this.startButton.Name = "startButton";
+            this.startButton.Size = new System.Drawing.Size(75, 23);
+            this.startButton.TabIndex = 0;
+            this.startButton.Text = "START";
+            this.startButton.UseVisualStyleBackColor = true;
+            this.startButton.Click += new System.EventHandler(this.startButton_Click);
+            // 
+            // timeLabel
+            // 
+            this.timeLabel.AutoSize = true;
+            this.timeLabel.Location = new System.Drawing.Point(12, 183);
+            this.timeLabel.Name = "timeLabel";
+            this.timeLabel.Size = new System.Drawing.Size(0, 13);
+            this.timeLabel.TabIndex = 1;
+            // 
+            // timer
+            // 
+            this.timer.Interval = 1000;
+            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            // 
+            // progressBar
+            // 
+            this.progressBar.Location = new System.Drawing.Point(12, 199);
+            this.progressBar.Maximum = 1500;
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(303, 23);
+            this.progressBar.TabIndex = 3;
+            // 
+            // breakLabel
+            // 
+            this.breakLabel.AutoSize = true;
+            this.breakLabel.Location = new System.Drawing.Point(12, 42);
+            this.breakLabel.Name = "breakLabel";
+            this.breakLabel.Size = new System.Drawing.Size(45, 13);
+            this.breakLabel.TabIndex = 4;
+            this.breakLabel.Text = "Przerwa";
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(327, 234);
+            this.Controls.Add(this.breakLabel);
+            this.Controls.Add(this.progressBar);
+            this.Controls.Add(this.timeLabel);
+            this.Controls.Add(this.startButton);
+            this.Name = "Form1";
             this.Text = "Form1";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Button startButton;
+        private System.Windows.Forms.Label timeLabel;
+        private System.Windows.Forms.Timer timer;
+        private System.Windows.Forms.ProgressBar progressBar;
+        private System.Windows.Forms.Label breakLabel;
     }
 }
 
