@@ -31,10 +31,16 @@ namespace PomodoroApp
             ChangeText();
             counting.SubtrackMinute();
             progressBar.Value += 1;
+            
         }
 
-        private void ChangeText() => timeLabel.Text = String.Format("Do przerwy pozostało {0} sekund, {1} minut",
-                counting.Seconds, counting.Minutes);
+        private void ChangeText()
+        {
+            timeLabel.Text = String.Format("Do przerwy pozostało {0} sekund, {1} minut",
+                  counting.Seconds, counting.Minutes);
+            breakLabel.Text = String.Format("Krótka przerwa: {0}, Długa przerwa: {1}", counting.IsBreak, counting.IsBreak);
+            countingBreaks.Text = String.Format("Ilość krótkich przerw {0}, długich {1}", counting.BreakCounter, counting.LongBreakCounter);
+        }
 
     }
 

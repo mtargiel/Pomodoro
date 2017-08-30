@@ -34,6 +34,7 @@
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.breakLabel = new System.Windows.Forms.Label();
+            this.countingBreaks = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // startButton
@@ -72,15 +73,23 @@
             this.breakLabel.AutoSize = true;
             this.breakLabel.Location = new System.Drawing.Point(12, 42);
             this.breakLabel.Name = "breakLabel";
-            this.breakLabel.Size = new System.Drawing.Size(45, 13);
+            this.breakLabel.Size = new System.Drawing.Size(0, 13);
             this.breakLabel.TabIndex = 4;
-            this.breakLabel.Text = "Przerwa";
+            // 
+            // countingBreaks
+            // 
+            this.countingBreaks.AutoSize = true;
+            this.countingBreaks.Location = new System.Drawing.Point(12, 62);
+            this.countingBreaks.Name = "countingBreaks";
+            this.countingBreaks.Size = new System.Drawing.Size(0, 13);
+            this.countingBreaks.TabIndex = 5;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(327, 234);
+            this.Controls.Add(this.countingBreaks);
             this.Controls.Add(this.breakLabel);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.timeLabel);
@@ -99,6 +108,7 @@
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Label breakLabel;
+        private System.Windows.Forms.Label countingBreaks;
     }
 }
 

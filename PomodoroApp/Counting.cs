@@ -22,7 +22,7 @@
         }
 
         public bool IsLongBreak { get; set; }
-        int BreakCounter { get; set; }
+        public int BreakCounter { get; set; }
 
         public Counting(int minutes, int breakTime)
         {
