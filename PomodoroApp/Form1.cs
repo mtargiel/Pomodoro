@@ -12,27 +12,27 @@ namespace PomodoroApp
 {
     public partial class Form1 : Form
     {
-        //TODO Add delegate and event to check break
-
-        Counting counting = new Counting(1, 15);
+        
+        Counting counting;
         public Form1()
         {
             InitializeComponent();
-            ChangeBreakText();
-            counting.ChangeBreak += Counting_ChangeBreak;
             
         }
 
         private void Counting_ChangeBreak(object sender, EventArgs e)
         {
-            ChangeBreakText();
+           breakLabel.Text = ChangeBreakText();
         }
 
         private void startButton_Click(object sender, EventArgs e)
         {
+            counting = new Counting((int)numericUpDown1.Value, 1);
+            counting.ChangeBreak += Counting_ChangeBreak;
             progressBar.Maximum = counting.Minutes * 60;
             progressBar.Value = counting.Minutes * 60;
             timer.Start();
+            breakLabel.Text = ChangeBreakText();
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -49,13 +49,22 @@ namespace PomodoroApp
             timeLabel.Text = String.Format("Do przerwy pozostało {0} sekund, {1} minut",
                   counting.Seconds, counting.Minutes);
         }
-        private void ChangeBreakText()
+        private string ChangeBreakText()
         {
-            breakLabel.Text = String.Format("Krótka przerwa: {0}, Długa przerwa: {1}", counting.IsBreak, counting.IsBreak);
-            countingBreaks.Text = String.Format("Ilość krótkich przerw {0}, długich {1}", counting.BreakCounter, counting.LongBreakCounter);
+            if (counting.IsBreak)
+                return "Przerwa 5 minutowa";
+            else if (!counting.IsBreak)
+                return "Do roboty!";
+            if (counting.IsLongBreak)
+                return String.Format("Przerwa {0} minutowa", 15);
+            else
+                return "Do roboty!";
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
 
+        }
     }
 
 }

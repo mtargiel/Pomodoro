@@ -35,7 +35,8 @@
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.breakLabel = new System.Windows.Forms.Label();
-            this.countingBreaks = new System.Windows.Forms.Label();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
             // startButton
@@ -77,20 +78,19 @@
             this.breakLabel.Size = new System.Drawing.Size(0, 13);
             this.breakLabel.TabIndex = 4;
             // 
-            // countingBreaks
+            // numericUpDown1
             // 
-            this.countingBreaks.AutoSize = true;
-            this.countingBreaks.Location = new System.Drawing.Point(12, 62);
-            this.countingBreaks.Name = "countingBreaks";
-            this.countingBreaks.Size = new System.Drawing.Size(0, 13);
-            this.countingBreaks.TabIndex = 5;
+            this.numericUpDown1.Location = new System.Drawing.Point(15, 83);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
+            this.numericUpDown1.TabIndex = 5;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(327, 234);
-            this.Controls.Add(this.countingBreaks);
+            this.Controls.Add(this.numericUpDown1);
             this.Controls.Add(this.breakLabel);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.timeLabel);
@@ -98,6 +98,8 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Pomodoro";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -110,7 +112,7 @@
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Label breakLabel;
-        private System.Windows.Forms.Label countingBreaks;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
     }
 }
 

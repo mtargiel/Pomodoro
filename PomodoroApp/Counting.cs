@@ -14,7 +14,6 @@ namespace PomodoroApp
             set { _seconds = value; }
         }
 
-        int LongBreakTime { get; set; }
         private bool _isBreak;
 
         public bool IsBreak
@@ -24,22 +23,33 @@ namespace PomodoroApp
             {
                 _isBreak = value;
                     ChangeBreak(this, null);
-                
             }
         }
 
-        public bool IsLongBreak { get; set; }
-        public int BreakCounter { get; set; }
+        private bool _longBreak;
+        public bool IsLongBreak
+        {
+            get { return _longBreak; }
+            set
+            {
+                _longBreak = value;
+                ChangeBreak(this, null);
+            }
+        }
 
+        public int BreakCounter { get; set; }
+        private int _startMinutes;
+        private int _startBreakMinutes;
         public Counting(int minutes, int breakTime)
         {
-            this.Minutes = minutes;
-            this.LongBreakTime = breakTime;
+            Minutes = minutes;
+            _startMinutes = minutes;
+            _startBreakMinutes = breakTime;
+
         }
 
         public void SubtrackMinute()
         {
-            
             if (Seconds <= 0 && Minutes > 0)
             {
                 Minutes--;
@@ -47,7 +57,8 @@ namespace PomodoroApp
             }
             else if (Minutes <= 0 && Seconds <= 0)
             {
-               setBreak();
+                IsLongBreak = IsLongBreak ? false : true;
+                setBreak();
             }
             else
                 Seconds--;
@@ -57,7 +68,7 @@ namespace PomodoroApp
         {
             if (IsBreak)
             {
-                Minutes = 25;
+                Minutes = _startMinutes;
                 IsBreak = false;
             }
             else
@@ -66,9 +77,9 @@ namespace PomodoroApp
                 IsBreak = true;
                 BreakCounter++;
             }
-            if (BreakCounter==5)
+            if (BreakCounter==5 && IsLongBreak == false)
             {
-                Minutes = 15;
+                Minutes = _startBreakMinutes;
                 IsLongBreak = IsLongBreak ? false : true;
                 BreakCounter = 0;
                 LongBreakCounter++;
