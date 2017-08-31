@@ -1,11 +1,13 @@
-﻿namespace PomodoroApp
+﻿using System;
+
+namespace PomodoroApp
 {
     public class Counting
     {
         public int Minutes { get; set; }
         public int LongBreakCounter { get; set; }
-        private int _seconds = 60;
-
+        private int _seconds = 0;
+        public event EventHandler ChangeBreak;
         public int Seconds
         {
             get { return _seconds; }
@@ -18,7 +20,12 @@
         public bool IsBreak
         {
             get { return _isBreak; }
-            set { _isBreak = value; }
+            set
+            {
+                _isBreak = value;
+                    ChangeBreak(this, null);
+                
+            }
         }
 
         public bool IsLongBreak { get; set; }
@@ -32,24 +39,30 @@
 
         public void SubtrackMinute()
         {
-            Seconds--;
-            if (Seconds == 0)
+            
+            if (Seconds <= 0 && Minutes > 0)
             {
-                Minutes -= 1;
+                Minutes--;
                 Seconds = 60;
             }
-
-            if (Minutes == 0)
-                setBreak();
+            else if (Minutes <= 0 && Seconds <= 0)
+            {
+               setBreak();
+            }
+            else
+                Seconds--;
         }
 
         private void setBreak()
         {
             if (IsBreak)
+            {
+                Minutes = 25;
                 IsBreak = false;
+            }
             else
             {
-                Minutes = 5;
+                Minutes = 1;
                 IsBreak = true;
                 BreakCounter++;
             }

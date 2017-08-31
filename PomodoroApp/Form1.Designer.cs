@@ -95,7 +95,7 @@
             this.Controls.Add(this.timeLabel);
             this.Controls.Add(this.startButton);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Pomodoro";
             this.ResumeLayout(false);
             this.PerformLayout();
 
