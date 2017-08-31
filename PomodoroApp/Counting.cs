@@ -4,14 +4,14 @@ namespace PomodoroApp
 {
     public class Counting
     {
-        public int Minutes { get; set; }
-        public int LongBreakCounter { get; set; }
+        public int Minutes { get; private set; }
+        public int LongBreakCounter { get; private set; }
         private int _seconds = 0;
         public event EventHandler ChangeBreak;
         public int Seconds
         {
             get { return _seconds; }
-            set { _seconds = value; }
+            private set { _seconds = value; }
         }
 
         private bool _isBreak;
@@ -19,7 +19,7 @@ namespace PomodoroApp
         public bool IsBreak
         {
             get { return _isBreak; }
-            set
+            private set
             {
                 _isBreak = value;
                     ChangeBreak(this, null);
@@ -30,16 +30,16 @@ namespace PomodoroApp
         public bool IsLongBreak
         {
             get { return _longBreak; }
-            set
+            private set
             {
                 _longBreak = value;
                 ChangeBreak(this, null);
             }
         }
 
-        public int BreakCounter { get; set; }
-        private int _startMinutes;
-        private int _startBreakMinutes;
+        public int BreakCounter { get; private set; }
+        int _startMinutes;
+        int _startBreakMinutes;
         public Counting(int minutes, int breakTime)
         {
             Minutes = minutes;
@@ -57,13 +57,11 @@ namespace PomodoroApp
             }
             else if (Minutes <= 0 && Seconds <= 0)
             {
-                IsLongBreak = IsLongBreak ? false : true;
-                setBreak();
+                     setBreak();
             }
             else
                 Seconds--;
         }
-
         private void setBreak()
         {
             if (IsBreak)
@@ -71,18 +69,25 @@ namespace PomodoroApp
                 Minutes = _startMinutes;
                 IsBreak = false;
             }
-            else
-            {
-                Minutes = 1;
-                IsBreak = true;
-                BreakCounter++;
-            }
-            if (BreakCounter==5 && IsLongBreak == false)
+            if (IsLongBreak)
             {
                 Minutes = _startBreakMinutes;
-                IsLongBreak = IsLongBreak ? false : true;
-                BreakCounter = 0;
-                LongBreakCounter++;
+                IsLongBreak = false;
+            }
+            else
+            {
+                if (BreakCounter >= 4)
+                {
+                    IsLongBreak = true;
+                    LongBreakCounter++;
+                    BreakCounter = 0;
+                }
+                else
+                {
+                    Minutes = 1;
+                    IsBreak = true;
+                    BreakCounter++;
+                }
             }
         }
 
