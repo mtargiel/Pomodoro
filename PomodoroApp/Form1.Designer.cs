@@ -39,7 +39,6 @@
             this.numericUpDownBreak = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMinutes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBreak)).BeginInit();
             this.SuspendLayout();
@@ -57,7 +56,7 @@
             // timeLabel
             // 
             this.timeLabel.AutoSize = true;
-            this.timeLabel.Location = new System.Drawing.Point(12, 183);
+            this.timeLabel.Location = new System.Drawing.Point(12, 140);
             this.timeLabel.Name = "timeLabel";
             this.timeLabel.Size = new System.Drawing.Size(0, 13);
             this.timeLabel.TabIndex = 1;
@@ -69,7 +68,7 @@
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(12, 199);
+            this.progressBar.Location = new System.Drawing.Point(12, 156);
             this.progressBar.Maximum = 1500;
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(303, 23);
@@ -78,21 +77,21 @@
             // breakLabel
             // 
             this.breakLabel.AutoSize = true;
-            this.breakLabel.Location = new System.Drawing.Point(12, 42);
+            this.breakLabel.Location = new System.Drawing.Point(12, 122);
             this.breakLabel.Name = "breakLabel";
             this.breakLabel.Size = new System.Drawing.Size(0, 13);
             this.breakLabel.TabIndex = 4;
             // 
             // numericUpDownMinutes
             // 
-            this.numericUpDownMinutes.Location = new System.Drawing.Point(12, 84);
+            this.numericUpDownMinutes.Location = new System.Drawing.Point(12, 41);
             this.numericUpDownMinutes.Name = "numericUpDownMinutes";
             this.numericUpDownMinutes.Size = new System.Drawing.Size(120, 20);
             this.numericUpDownMinutes.TabIndex = 5;
             // 
             // numericUpDownBreak
             // 
-            this.numericUpDownBreak.Location = new System.Drawing.Point(12, 110);
+            this.numericUpDownBreak.Location = new System.Drawing.Point(12, 67);
             this.numericUpDownBreak.Name = "numericUpDownBreak";
             this.numericUpDownBreak.Size = new System.Drawing.Size(120, 20);
             this.numericUpDownBreak.TabIndex = 6;
@@ -100,7 +99,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(139, 91);
+            this.label1.Location = new System.Drawing.Point(139, 48);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(96, 13);
             this.label1.TabIndex = 7;
@@ -109,27 +108,17 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(139, 117);
+            this.label2.Location = new System.Drawing.Point(139, 74);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(104, 13);
             this.label2.TabIndex = 8;
             this.label2.Text = "Czas długiej przerwy";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(19, 180);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "label3";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(327, 234);
-            this.Controls.Add(this.label3);
+            this.ClientSize = new System.Drawing.Size(327, 186);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numericUpDownBreak);
@@ -141,7 +130,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Pomodoro";
-            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMinutes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBreak)).EndInit();
             this.ResumeLayout(false);
@@ -160,7 +148,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDownBreak;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
     }
 }
 

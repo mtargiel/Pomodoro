@@ -57,7 +57,7 @@ namespace PomodoroApp
             }
             else if (Minutes <= 0 && Seconds <= 0)
             {
-                     setBreak();
+                setBreak();
             }
             else
                 Seconds--;
@@ -69,7 +69,7 @@ namespace PomodoroApp
                 Minutes = _startMinutes;
                 IsBreak = false;
             }
-            if (IsLongBreak)
+            else if (IsLongBreak)
             {
                 Minutes = _startBreakMinutes;
                 IsLongBreak = false;
@@ -84,7 +84,7 @@ namespace PomodoroApp
                 }
                 else
                 {
-                    Minutes = 1;
+                    Minutes = 5;
                     IsBreak = true;
                     BreakCounter++;
                 }

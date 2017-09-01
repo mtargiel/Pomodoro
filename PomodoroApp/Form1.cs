@@ -12,7 +12,11 @@ namespace PomodoroApp
 {
     public partial class Form1 : Form
     {
-        //TODO: Fix long break text, fix status bar
+        //TODO: Create settings window with app customization, 
+        //TODO: Create statistic window. 
+        //TODO: Add Sound
+        //TODO: Add minimalize to tray function.
+
         Counting counting;
         public Form1()
         {
@@ -29,19 +33,20 @@ namespace PomodoroApp
         {
             counting = new Counting((int)numericUpDownMinutes.Value, (int)numericUpDownBreak.Value);
             counting.ChangeBreak += Counting_ChangeBreak;
-            progressBar.Maximum = counting.Minutes * 60;
-            progressBar.Value = counting.Minutes * 60;
+
             timer.Start();
             breakLabel.Text = ChangeBreakText();
+            progressBar.Value = (int)numericUpDownMinutes.Value*60;
+            progressBar.Maximum = (int)numericUpDownMinutes.Value * 60;
         }
 
         private void timer_Tick(object sender, EventArgs e)
         {
+            if (progressBar.Value>0)
+                progressBar.Value--;
+
             counting.SubtrackMinute();
             ChangeText();
-            //if (progressBar.Value == 0)
-            //    progressBar.Value = counting.Minutes*60;
-            //progressBar.Value--;
         }
 
         private void ChangeText()
@@ -53,22 +58,25 @@ namespace PomodoroApp
         {
             if (counting.IsBreak)
             {
+                SetProgressBar(counting.Minutes);
                 return String.Format("Przerwa 5 minutowa");
-            }
-            else if (!counting.IsBreak)
-            {
-                return "Do roboty!";
             }
             else if (counting.IsLongBreak)
             {
+                SetProgressBar((int)numericUpDownBreak.Value);
                 return String.Format("Przerwa {0} minutowa");
             }
+            else
+            {
+                SetProgressBar(counting.Minutes);
                 return "Do roboty!";
+            }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void SetProgressBar(int minutes)
         {
-
+            progressBar.Maximum = minutes * 60;
+            progressBar.Value = minutes * 60;
         }
     }
 
