@@ -18,10 +18,10 @@ namespace PomodoroApp
         //TODO: Add minimalize to tray function.
 
         Counting counting;
+        Settings settings = new Settings();
         public Form1()
         {
             InitializeComponent();
-            
         }
 
         private void Counting_ChangeBreak(object sender, EventArgs e)
@@ -31,12 +31,16 @@ namespace PomodoroApp
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            counting = new Counting((int)numericUpDownMinutes.Value, (int)numericUpDownBreak.Value);
+            counting = new Counting(settings.WorkTime, settings.BreakTime);
             counting.ChangeBreak += Counting_ChangeBreak;
-
             timer.Start();
             breakLabel.Text = ChangeBreakText();
-            progressBar.Value = (int)numericUpDownMinutes.Value*60;
+            ProgressBarStart();
+        }
+
+        private void ProgressBarStart()
+        {
+            progressBar.Value = (int)numericUpDownMinutes.Value * 60;
             progressBar.Maximum = (int)numericUpDownMinutes.Value * 60;
         }
 
@@ -63,7 +67,7 @@ namespace PomodoroApp
             }
             else if (counting.IsLongBreak)
             {
-                SetProgressBar((int)numericUpDownBreak.Value);
+                SetProgressBar(counting.BreakMinutes);
                 return String.Format("Przerwa {0} minutowa");
             }
             else
@@ -77,6 +81,12 @@ namespace PomodoroApp
         {
             progressBar.Maximum = minutes * 60;
             progressBar.Value = minutes * 60;
+        }
+
+        private void czasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            settings.Activate();
+            settings.Show();
         }
     }
 

@@ -39,13 +39,24 @@
             this.numericUpDownBreak = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.plikToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.plikToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ustawieniaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.zakończToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ustawieniaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.statystykiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.czasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMinutes)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBreak)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // startButton
             // 
-            this.startButton.Location = new System.Drawing.Point(12, 12);
+            this.startButton.Location = new System.Drawing.Point(12, 46);
             this.startButton.Name = "startButton";
             this.startButton.Size = new System.Drawing.Size(75, 23);
             this.startButton.TabIndex = 0;
@@ -84,14 +95,14 @@
             // 
             // numericUpDownMinutes
             // 
-            this.numericUpDownMinutes.Location = new System.Drawing.Point(12, 41);
+            this.numericUpDownMinutes.Location = new System.Drawing.Point(12, 75);
             this.numericUpDownMinutes.Name = "numericUpDownMinutes";
             this.numericUpDownMinutes.Size = new System.Drawing.Size(120, 20);
             this.numericUpDownMinutes.TabIndex = 5;
             // 
             // numericUpDownBreak
             // 
-            this.numericUpDownBreak.Location = new System.Drawing.Point(12, 67);
+            this.numericUpDownBreak.Location = new System.Drawing.Point(12, 101);
             this.numericUpDownBreak.Name = "numericUpDownBreak";
             this.numericUpDownBreak.Size = new System.Drawing.Size(120, 20);
             this.numericUpDownBreak.TabIndex = 6;
@@ -99,7 +110,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(139, 48);
+            this.label1.Location = new System.Drawing.Point(139, 82);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(96, 13);
             this.label1.TabIndex = 7;
@@ -108,17 +119,85 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(139, 74);
+            this.label2.Location = new System.Drawing.Point(139, 108);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(104, 13);
             this.label2.TabIndex = 8;
             this.label2.Text = "Czas długiej przerwy";
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.plikToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(94, 26);
+            // 
+            // plikToolStripMenuItem
+            // 
+            this.plikToolStripMenuItem.Name = "plikToolStripMenuItem";
+            this.plikToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
+            this.plikToolStripMenuItem.Text = "plik";
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.plikToolStripMenuItem1,
+            this.ustawieniaToolStripMenuItem1});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(327, 24);
+            this.menuStrip1.TabIndex = 9;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // plikToolStripMenuItem1
+            // 
+            this.plikToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ustawieniaToolStripMenuItem,
+            this.zakończToolStripMenuItem});
+            this.plikToolStripMenuItem1.Name = "plikToolStripMenuItem1";
+            this.plikToolStripMenuItem1.Size = new System.Drawing.Size(38, 20);
+            this.plikToolStripMenuItem1.Text = "Plik";
+            // 
+            // ustawieniaToolStripMenuItem
+            // 
+            this.ustawieniaToolStripMenuItem.Name = "ustawieniaToolStripMenuItem";
+            this.ustawieniaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.ustawieniaToolStripMenuItem.Text = "Zapisz";
+            // 
+            // zakończToolStripMenuItem
+            // 
+            this.zakończToolStripMenuItem.Name = "zakończToolStripMenuItem";
+            this.zakończToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.zakończToolStripMenuItem.Text = "Zakończ";
+            // 
+            // ustawieniaToolStripMenuItem1
+            // 
+            this.ustawieniaToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statystykiToolStripMenuItem,
+            this.czasToolStripMenuItem});
+            this.ustawieniaToolStripMenuItem1.Name = "ustawieniaToolStripMenuItem1";
+            this.ustawieniaToolStripMenuItem1.Size = new System.Drawing.Size(76, 20);
+            this.ustawieniaToolStripMenuItem1.Text = "Ustawienia";
+            // 
+            // statystykiToolStripMenuItem
+            // 
+            this.statystykiToolStripMenuItem.Name = "statystykiToolStripMenuItem";
+            this.statystykiToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.statystykiToolStripMenuItem.Text = "Statystyki";
+            // 
+            // czasToolStripMenuItem
+            // 
+            this.czasToolStripMenuItem.Name = "czasToolStripMenuItem";
+            this.czasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.czasToolStripMenuItem.Text = "Czas";
+            this.czasToolStripMenuItem.Click += new System.EventHandler(this.czasToolStripMenuItem_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(327, 186);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numericUpDownBreak);
@@ -128,10 +207,14 @@
             this.Controls.Add(this.timeLabel);
             this.Controls.Add(this.startButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Pomodoro";
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMinutes)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBreak)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -148,6 +231,15 @@
         private System.Windows.Forms.NumericUpDown numericUpDownBreak;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem plikToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem plikToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem ustawieniaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem zakończToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ustawieniaToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem statystykiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem czasToolStripMenuItem;
     }
 }
 

@@ -36,7 +36,14 @@ namespace PomodoroApp
                 ChangeBreak(this, null);
             }
         }
-
+        public  int BreakMinutes
+        {
+            get
+            {
+                return _startBreakMinutes;
+            }
+            private set { _startBreakMinutes = value; }
+        }
         public int BreakCounter { get; private set; }
         int _startMinutes;
         int _startBreakMinutes;
@@ -44,7 +51,7 @@ namespace PomodoroApp
         {
             Minutes = minutes;
             _startMinutes = minutes;
-            _startBreakMinutes = breakTime;
+            BreakMinutes = breakTime;
 
         }
 
