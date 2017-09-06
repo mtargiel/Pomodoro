@@ -28,9 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Settings));
             this.setTimeOfBreak = new System.Windows.Forms.ComboBox();
             this.saveButton = new System.Windows.Forms.Button();
             this.workTimeBox = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // setTimeOfBreak
@@ -41,14 +44,14 @@
             "10",
             "15",
             "20"});
-            this.setTimeOfBreak.Location = new System.Drawing.Point(12, 30);
+            this.setTimeOfBreak.Location = new System.Drawing.Point(12, 25);
             this.setTimeOfBreak.Name = "setTimeOfBreak";
             this.setTimeOfBreak.Size = new System.Drawing.Size(63, 21);
             this.setTimeOfBreak.TabIndex = 0;
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(12, 226);
+            this.saveButton.Location = new System.Drawing.Point(12, 118);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
             this.saveButton.TabIndex = 1;
@@ -65,22 +68,49 @@
             "20",
             "25",
             "30"});
-            this.workTimeBox.Location = new System.Drawing.Point(12, 69);
+            this.workTimeBox.Location = new System.Drawing.Point(12, 80);
             this.workTimeBox.Name = "workTimeBox";
             this.workTimeBox.Size = new System.Drawing.Size(63, 21);
             this.workTimeBox.TabIndex = 2;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(45, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Przerwa";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 61);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(59, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Czas pracy";
+            // 
             // Settings
             // 
+            this.AcceptButton = this.saveButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(120, 155);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.workTimeBox);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.setTimeOfBreak);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Settings";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.Text = "Settings";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -89,5 +119,7 @@
         private System.Windows.Forms.ComboBox setTimeOfBreak;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.ComboBox workTimeBox;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

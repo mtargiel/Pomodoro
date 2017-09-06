@@ -19,6 +19,7 @@ namespace PomodoroApp
 
         Counting counting;
         Settings settings = new Settings();
+        new bool Click;
         public Form1()
         {
             InitializeComponent();
@@ -31,17 +32,50 @@ namespace PomodoroApp
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            counting = new Counting(settings.WorkTime, settings.BreakTime);
-            counting.ChangeBreak += Counting_ChangeBreak;
-            timer.Start();
-            breakLabel.Text = ChangeBreakText();
-            ProgressBarStart();
+
+            startButton.Text = "Zakończ";
+            if (Click)
+                ClickButton();
+            else
+            {
+                Start();
+                Click = true;
+            }
         }
 
-        private void ProgressBarStart()
+        private void Start()
         {
-            progressBar.Value = (int)numericUpDownMinutes.Value * 60;
-            progressBar.Maximum = (int)numericUpDownMinutes.Value * 60;
+            counting = new Counting(settings.WorkTime, settings.BreakTime);
+            counting.ChangeBreak += Counting_ChangeBreak;
+            breakLabel.Text = ChangeBreakText();
+            timer.Start();
+            SetProgressBar(counting.Minutes);
+        }
+
+        private void ClickButton()
+        {
+            timer.Stop();
+            string mess;
+            mess = $"Zakończyłeś sesję, ilość POMODORO {counting.GetBreakCounter()}";
+
+            DialogResult result1 = MessageBox.Show(mess,  "Czy chcesz zrestartować pomodoro?",
+                MessageBoxButtons.YesNo);
+            if (result1 == DialogResult.Yes)
+            {
+                AddStats();
+                Start();
+            }
+            else if (result1 == DialogResult.No)
+            {
+                AddStats();
+                this.Close();
+            }
+        }
+
+        private void AddStats()
+        {
+            Stats stats = new Stats(counting.GetBreakCounter(), counting.GetSumOfMinutes(), counting.GetSumOfBreakMinutes(), counting.GetBreakCounter() * 5, DateTime.Now);
+            stats.SaveToJson();
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -67,7 +101,7 @@ namespace PomodoroApp
             }
             else if (counting.IsLongBreak)
             {
-                SetProgressBar(counting.BreakMinutes);
+                SetProgressBar(counting.MinutesOfBreak);
                 return String.Format("Przerwa {0} minutowa");
             }
             else
@@ -87,6 +121,17 @@ namespace PomodoroApp
         {
             settings.Activate();
             settings.Show();
+        }
+
+        private void statystykiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            StatsForm stats = new StatsForm();
+            stats.Show();
+        }
+
+        private void zakończToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 

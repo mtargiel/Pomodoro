@@ -20,20 +20,32 @@ namespace PomodoroApp
         public int BreakTime
         {
             get { return _breakTime; }
-            set { _breakTime = value; }
+            set
+            {
+                if (value != 0)
+                    _breakTime = value;
+                else
+                  MessageBox.Show("Długa przerwa nie może wynosić 0 minut!");
+            }
         }
         private int _workTime = 25;
 
         public int WorkTime
         {
             get { return _workTime; }
-            set { _workTime = value; }
+            set
+            { if (value != 0)
+                _workTime = value;
+              else
+                MessageBox.Show("Czas pracy nie może wynosić 0 minut!");
+            }
         }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
             BreakTime = GetBreakTime();
             WorkTime = GetWorkTime();
+            this.Close();
         }
 
         private int GetBreakTime()

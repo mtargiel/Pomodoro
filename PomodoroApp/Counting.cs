@@ -4,17 +4,28 @@ namespace PomodoroApp
 {
     public class Counting
     {
+        public event EventHandler ChangeBreak;
+
+        private int _seconds = 0;
+        private bool _isBreak;
+        private bool _longBreak;
+        private int _startMinutes;
+        private int _startBreakMinutes;
+        private int breakCounter;
+
+        public int GetBreakCounter() => breakCounter;
+        public int GetSumOfMinutes() => _startMinutes*breakCounter;
+        public int GetSumOfBreakMinutes() => (_startBreakMinutes * LongBreakCounter) + (breakCounter * 5);
+
+        private void SetBreakCounter(int value) => breakCounter = value;
+
         public int Minutes { get; private set; }
         public int LongBreakCounter { get; private set; }
-        private int _seconds = 0;
-        public event EventHandler ChangeBreak;
         public int Seconds
         {
             get { return _seconds; }
             private set { _seconds = value; }
         }
-
-        private bool _isBreak;
 
         public bool IsBreak
         {
@@ -26,7 +37,6 @@ namespace PomodoroApp
             }
         }
 
-        private bool _longBreak;
         public bool IsLongBreak
         {
             get { return _longBreak; }
@@ -36,7 +46,7 @@ namespace PomodoroApp
                 ChangeBreak(this, null);
             }
         }
-        public  int BreakMinutes
+        public  int MinutesOfBreak
         {
             get
             {
@@ -44,14 +54,14 @@ namespace PomodoroApp
             }
             private set { _startBreakMinutes = value; }
         }
-        public int BreakCounter { get; private set; }
-        int _startMinutes;
-        int _startBreakMinutes;
+
+
+
         public Counting(int minutes, int breakTime)
         {
             Minutes = minutes;
             _startMinutes = minutes;
-            BreakMinutes = breakTime;
+            MinutesOfBreak = breakTime;
 
         }
 
@@ -64,12 +74,13 @@ namespace PomodoroApp
             }
             else if (Minutes <= 0 && Seconds <= 0)
             {
-                setBreak();
+                SetBreak();
             }
             else
                 Seconds--;
         }
-        private void setBreak()
+
+        private void SetBreak()
         {
             if (IsBreak)
             {
@@ -83,17 +94,17 @@ namespace PomodoroApp
             }
             else
             {
-                if (BreakCounter >= 4)
+                if (GetBreakCounter() >= 4)
                 {
                     IsLongBreak = true;
                     LongBreakCounter++;
-                    BreakCounter = 0;
+                    SetBreakCounter(0);
                 }
                 else
                 {
                     Minutes = 5;
                     IsBreak = true;
-                    BreakCounter++;
+                    SetBreakCounter(GetBreakCounter() + 1);
                 }
             }
         }

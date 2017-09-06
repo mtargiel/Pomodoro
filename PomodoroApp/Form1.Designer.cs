@@ -35,10 +35,6 @@
             this.timer = new System.Windows.Forms.Timer(this.components);
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.breakLabel = new System.Windows.Forms.Label();
-            this.numericUpDownMinutes = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDownBreak = new System.Windows.Forms.NumericUpDown();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.plikToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -48,8 +44,6 @@
             this.ustawieniaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.statystykiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.czasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMinutes)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBreak)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -67,7 +61,7 @@
             // timeLabel
             // 
             this.timeLabel.AutoSize = true;
-            this.timeLabel.Location = new System.Drawing.Point(12, 140);
+            this.timeLabel.Location = new System.Drawing.Point(12, 95);
             this.timeLabel.Name = "timeLabel";
             this.timeLabel.Size = new System.Drawing.Size(0, 13);
             this.timeLabel.TabIndex = 1;
@@ -79,7 +73,7 @@
             // 
             // progressBar
             // 
-            this.progressBar.Location = new System.Drawing.Point(12, 156);
+            this.progressBar.Location = new System.Drawing.Point(12, 111);
             this.progressBar.Maximum = 1500;
             this.progressBar.Name = "progressBar";
             this.progressBar.Size = new System.Drawing.Size(303, 23);
@@ -88,42 +82,10 @@
             // breakLabel
             // 
             this.breakLabel.AutoSize = true;
-            this.breakLabel.Location = new System.Drawing.Point(12, 122);
+            this.breakLabel.Location = new System.Drawing.Point(12, 77);
             this.breakLabel.Name = "breakLabel";
             this.breakLabel.Size = new System.Drawing.Size(0, 13);
             this.breakLabel.TabIndex = 4;
-            // 
-            // numericUpDownMinutes
-            // 
-            this.numericUpDownMinutes.Location = new System.Drawing.Point(12, 75);
-            this.numericUpDownMinutes.Name = "numericUpDownMinutes";
-            this.numericUpDownMinutes.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDownMinutes.TabIndex = 5;
-            // 
-            // numericUpDownBreak
-            // 
-            this.numericUpDownBreak.Location = new System.Drawing.Point(12, 101);
-            this.numericUpDownBreak.Name = "numericUpDownBreak";
-            this.numericUpDownBreak.Size = new System.Drawing.Size(120, 20);
-            this.numericUpDownBreak.TabIndex = 6;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(139, 82);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(96, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Czas trwania pracy";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(139, 108);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(104, 13);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Czas długiej przerwy";
             // 
             // contextMenuStrip1
             // 
@@ -169,6 +131,7 @@
             this.zakończToolStripMenuItem.Name = "zakończToolStripMenuItem";
             this.zakończToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.zakończToolStripMenuItem.Text = "Zakończ";
+            this.zakończToolStripMenuItem.Click += new System.EventHandler(this.zakończToolStripMenuItem_Click);
             // 
             // ustawieniaToolStripMenuItem1
             // 
@@ -182,13 +145,14 @@
             // statystykiToolStripMenuItem
             // 
             this.statystykiToolStripMenuItem.Name = "statystykiToolStripMenuItem";
-            this.statystykiToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.statystykiToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.statystykiToolStripMenuItem.Text = "Statystyki";
+            this.statystykiToolStripMenuItem.Click += new System.EventHandler(this.statystykiToolStripMenuItem_Click);
             // 
             // czasToolStripMenuItem
             // 
             this.czasToolStripMenuItem.Name = "czasToolStripMenuItem";
-            this.czasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.czasToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
             this.czasToolStripMenuItem.Text = "Czas";
             this.czasToolStripMenuItem.Click += new System.EventHandler(this.czasToolStripMenuItem_Click);
             // 
@@ -196,12 +160,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(327, 186);
+            this.ClientSize = new System.Drawing.Size(327, 145);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.numericUpDownBreak);
-            this.Controls.Add(this.numericUpDownMinutes);
             this.Controls.Add(this.breakLabel);
             this.Controls.Add(this.progressBar);
             this.Controls.Add(this.timeLabel);
@@ -210,8 +170,6 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Pomodoro";
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownMinutes)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownBreak)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
@@ -227,10 +185,6 @@
         private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.ProgressBar progressBar;
         private System.Windows.Forms.Label breakLabel;
-        private System.Windows.Forms.NumericUpDown numericUpDownMinutes;
-        private System.Windows.Forms.NumericUpDown numericUpDownBreak;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem plikToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
