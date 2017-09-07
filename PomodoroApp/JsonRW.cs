@@ -15,9 +15,12 @@ namespace PomodoroApp
         public JsonRW(T jsonObject, string filePath)
         {
             JsonObject = jsonObject;
-            FilePath = FilePath;
+            FilePath = filePath;
         }
-
+        public JsonRW(string filePath)
+        {
+            FilePath = filePath;
+        }
         public List<T> SaveToFileJson(List<T> Lista)
         {
             using (StreamWriter file = File.CreateText($@"{FilePath}"))
@@ -34,14 +37,12 @@ namespace PomodoroApp
             return Lista;
         }
 
-        public List<T> OpenFileJson()
+        public List<T> OpenFileJson(List<T> Lista)
         {
-            List<T> Lista;
             using (StreamReader r = File.OpenText($@"{FilePath}"))
             {
                 Lista = JsonConvert.DeserializeObject<List<T>>(r.ReadToEnd());
             }
-
             return Lista;
         }
     }

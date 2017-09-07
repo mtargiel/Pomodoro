@@ -7,15 +7,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace PomodoroApp
 {
     public partial class Form1 : Form
     {
-        //TODO: Create settings window with app customization, 
-        //TODO: Create statistic window. 
-        //TODO: Add Sound
-        //TODO: Add minimalize to tray function.
+
 
         Counting counting;
         Settings settings = new Settings();
@@ -46,10 +44,21 @@ namespace PomodoroApp
         private void Start()
         {
             counting = new Counting(settings.WorkTime, settings.BreakTime);
+            PlaySound(false);
             counting.ChangeBreak += Counting_ChangeBreak;
             breakLabel.Text = ChangeBreakText();
             timer.Start();
             SetProgressBar(counting.Minutes);
+        }
+
+        private void PlaySound(bool BreakSound)
+        {
+            SoundPlayer ticking = new SoundPlayer(@"tick.wav");
+            SoundPlayer breakSound = new SoundPlayer(@"Alarm.wav");
+            if (Properties.Settings.Default.ClockTicking && !BreakSound)
+                ticking.PlayLooping();
+            else if (Properties.Settings.Default.AlarmSound && BreakSound)
+                breakSound.Play();
         }
 
         private void ClickButton()
@@ -96,11 +105,13 @@ namespace PomodoroApp
         {
             if (counting.IsBreak)
             {
+                PlaySound(true);
                 SetProgressBar(counting.Minutes);
                 return String.Format("Przerwa 5 minutowa");
             }
             else if (counting.IsLongBreak)
             {
+                PlaySound(true);
                 SetProgressBar(counting.MinutesOfBreak);
                 return String.Format("Przerwa {0} minutowa");
             }
@@ -120,6 +131,7 @@ namespace PomodoroApp
         private void czasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             settings.Activate();
+            //TODO Cannot reopen settings after save
             settings.Show();
         }
 

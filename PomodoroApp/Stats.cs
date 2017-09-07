@@ -33,38 +33,11 @@ namespace PomodoroApp
 
         public void SaveToJson()
         {
-            List<Stats> Lista;
-            Lista = OpenFileJson();
-            Lista = SaveToFileJson(Lista);
-
+            List<Stats> Lista = new List<Stats>();
+            JsonRW<Stats> jsonRW = new JsonRW<Stats>(this, "file.json");
+            Lista = jsonRW.OpenFileJson(Lista);
+            jsonRW.SaveToFileJson(Lista);
         }
 
-        private List<Stats> SaveToFileJson(List<Stats> Lista)
-        {
-            using (StreamWriter file = File.CreateText(@"..\..\file.json"))
-            {
-                if (Lista != null)
-                    Lista.Add(this);
-                else
-                    Lista = new List<Stats>() { this };
-
-                JsonSerializer serializer = new JsonSerializer();
-                serializer.Serialize(file, Lista);
-            }
-
-            return Lista;
-        }
-
-        private static List<Stats> OpenFileJson()
-        {
-            List<Stats> Lista;
-            using (StreamReader r = File.OpenText(@"..\..\file.json"))
-            {
-
-                Lista = JsonConvert.DeserializeObject<List<Stats>>(r.ReadToEnd());
-            }
-
-            return Lista;
-        }
     }
 }

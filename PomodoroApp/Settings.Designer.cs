@@ -34,6 +34,8 @@
             this.workTimeBox = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.soundOfTicking = new System.Windows.Forms.CheckBox();
+            this.breakSound = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // setTimeOfBreak
@@ -44,14 +46,14 @@
             "10",
             "15",
             "20"});
-            this.setTimeOfBreak.Location = new System.Drawing.Point(12, 25);
+            this.setTimeOfBreak.Location = new System.Drawing.Point(15, 23);
             this.setTimeOfBreak.Name = "setTimeOfBreak";
             this.setTimeOfBreak.Size = new System.Drawing.Size(63, 21);
             this.setTimeOfBreak.TabIndex = 0;
             // 
             // saveButton
             // 
-            this.saveButton.Location = new System.Drawing.Point(12, 118);
+            this.saveButton.Location = new System.Drawing.Point(12, 125);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
             this.saveButton.TabIndex = 1;
@@ -68,7 +70,7 @@
             "20",
             "25",
             "30"});
-            this.workTimeBox.Location = new System.Drawing.Point(12, 80);
+            this.workTimeBox.Location = new System.Drawing.Point(15, 77);
             this.workTimeBox.Name = "workTimeBox";
             this.workTimeBox.Size = new System.Drawing.Size(63, 21);
             this.workTimeBox.TabIndex = 2;
@@ -91,12 +93,38 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Czas pracy";
             // 
+            // soundOfTicking
+            // 
+            this.soundOfTicking.AutoSize = true;
+            this.soundOfTicking.Checked = true;
+            this.soundOfTicking.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.soundOfTicking.Location = new System.Drawing.Point(96, 25);
+            this.soundOfTicking.Name = "soundOfTicking";
+            this.soundOfTicking.Size = new System.Drawing.Size(64, 17);
+            this.soundOfTicking.TabIndex = 5;
+            this.soundOfTicking.Text = "Tykanie";
+            this.soundOfTicking.UseVisualStyleBackColor = true;
+            // 
+            // breakSound
+            // 
+            this.breakSound.AutoSize = true;
+            this.breakSound.Checked = true;
+            this.breakSound.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.breakSound.Location = new System.Drawing.Point(96, 49);
+            this.breakSound.Name = "breakSound";
+            this.breakSound.Size = new System.Drawing.Size(52, 17);
+            this.breakSound.TabIndex = 6;
+            this.breakSound.Text = "Alarm";
+            this.breakSound.UseVisualStyleBackColor = true;
+            // 
             // Settings
             // 
             this.AcceptButton = this.saveButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(120, 155);
+            this.ClientSize = new System.Drawing.Size(205, 160);
+            this.Controls.Add(this.breakSound);
+            this.Controls.Add(this.soundOfTicking);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.workTimeBox);
@@ -121,5 +149,7 @@
         private System.Windows.Forms.ComboBox workTimeBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox soundOfTicking;
+        private System.Windows.Forms.CheckBox breakSound;
     }
 }

@@ -15,7 +15,7 @@ namespace PomodoroApp
 
         public int GetBreakCounter() => breakCounter;
         public int GetSumOfMinutes() => _startMinutes*breakCounter;
-        public int GetSumOfBreakMinutes() => (_startBreakMinutes * LongBreakCounter) + (breakCounter * 5);
+        public int GetSumOfBreakMinutes() => (_startBreakMinutes * LongBreakCounter) + (breakCounter *5);
 
         private void SetBreakCounter(int value) => breakCounter = value;
 

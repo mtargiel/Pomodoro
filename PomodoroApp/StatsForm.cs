@@ -17,22 +17,8 @@ namespace PomodoroApp
         public StatsForm()
         {
             InitializeComponent();
-            List<Stats> listOfStats = ReadFromJson();
-            dataGridView1.DataSource = listOfStats;
+            dataGridView1.DataSource = new JsonRW<Stats>(@"file.json").OpenFileJson(new List<Stats>());
         }
-
-        private static List<Stats> ReadFromJson()
-        {
-            using (StreamReader r = File.OpenText(@"..\..\file.json"))
-            {
-
-                List<Stats> Lista = JsonConvert.DeserializeObject<List<Stats>>(r.ReadToEnd());
-                return Lista;
-            }
-
-        }
-
-
 
     }
 }
