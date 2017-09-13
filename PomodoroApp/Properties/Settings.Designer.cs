@@ -46,5 +46,17 @@ namespace PomodoroApp.Properties {
                 this["AlarmSound"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data/file.json")]
+        public string jsonFileLocation {
+            get {
+                return ((string)(this["jsonFileLocation"]));
+            }
+            set {
+                this["jsonFileLocation"] = value;
+            }
+        }
     }
 }

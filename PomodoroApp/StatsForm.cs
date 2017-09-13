@@ -17,8 +17,33 @@ namespace PomodoroApp
         public StatsForm()
         {
             InitializeComponent();
-            dataGridView1.DataSource = new JsonRW<Stats>(@"file.json").OpenFileJson(new List<Stats>());
+            dataGridView1.DataSource = new JsonRW<Stats>(Properties.Settings.Default.jsonFileLocation).OpenFileJson(new List<Stats>());
         }
 
+        private void CleanButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                FileStream fileStream = File.Open(Properties.Settings.Default.jsonFileLocation, FileMode.Open);
+                fileStream.SetLength(0);
+                fileStream.Close();
+            }
+            catch (FileNotFoundException ex)
+            {
+                MessageBox.Show($"File {ex.FileName} not found!");
+            }
+            catch (IOException ex)
+            {
+                MessageBox.Show(
+                    $"{ex.GetType().Name}: The write operation could not " +
+                    "be performed because the specified " +
+                    "part of the file is locked.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
     }
 }

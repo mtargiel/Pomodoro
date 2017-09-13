@@ -39,7 +39,6 @@
             this.plikToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.plikToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.ustawieniaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zakończToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ustawieniaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.statystykiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -114,24 +113,17 @@
             // plikToolStripMenuItem1
             // 
             this.plikToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ustawieniaToolStripMenuItem,
             this.zakończToolStripMenuItem});
             this.plikToolStripMenuItem1.Name = "plikToolStripMenuItem1";
             this.plikToolStripMenuItem1.Size = new System.Drawing.Size(38, 20);
             this.plikToolStripMenuItem1.Text = "Plik";
-            // 
-            // ustawieniaToolStripMenuItem
-            // 
-            this.ustawieniaToolStripMenuItem.Name = "ustawieniaToolStripMenuItem";
-            this.ustawieniaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.ustawieniaToolStripMenuItem.Text = "Zapisz";
             // 
             // zakończToolStripMenuItem
             // 
             this.zakończToolStripMenuItem.Name = "zakończToolStripMenuItem";
             this.zakończToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.zakończToolStripMenuItem.Text = "Zakończ";
-            this.zakończToolStripMenuItem.Click += new System.EventHandler(this.zakończToolStripMenuItem_Click);
+            this.zakończToolStripMenuItem.Click += new System.EventHandler(this.ZakończToolStripMenuItem_Click);
             // 
             // ustawieniaToolStripMenuItem1
             // 
@@ -145,16 +137,16 @@
             // statystykiToolStripMenuItem
             // 
             this.statystykiToolStripMenuItem.Name = "statystykiToolStripMenuItem";
-            this.statystykiToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.statystykiToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.statystykiToolStripMenuItem.Text = "Statystyki";
-            this.statystykiToolStripMenuItem.Click += new System.EventHandler(this.statystykiToolStripMenuItem_Click);
+            this.statystykiToolStripMenuItem.Click += new System.EventHandler(this.StatystykiToolStripMenuItem_Click);
             // 
             // czasToolStripMenuItem
             // 
             this.czasToolStripMenuItem.Name = "czasToolStripMenuItem";
-            this.czasToolStripMenuItem.Size = new System.Drawing.Size(124, 22);
+            this.czasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.czasToolStripMenuItem.Text = "Czas";
-            this.czasToolStripMenuItem.Click += new System.EventHandler(this.czasToolStripMenuItem_Click);
+            this.czasToolStripMenuItem.Click += new System.EventHandler(this.CzasToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -189,7 +181,6 @@
         private System.Windows.Forms.ToolStripMenuItem plikToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem plikToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem ustawieniaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem zakończToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ustawieniaToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem statystykiToolStripMenuItem;

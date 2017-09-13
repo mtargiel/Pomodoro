@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
+using Pomodoro;
 
 namespace PomodoroApp
 {
@@ -23,15 +24,12 @@ namespace PomodoroApp
             InitializeComponent();
         }
 
-        private void Counting_ChangeBreak(object sender, EventArgs e)
-        {
-           breakLabel.Text = ChangeBreakText();
-        }
+        private void Counting_ChangeBreak(object sender, EventArgs e) => breakLabel.Text = ChangeBreakText();
 
         private void startButton_Click(object sender, EventArgs e)
         {
 
-            startButton.Text = "Zakończ";
+            startButton.Text = "Interrupt";
             if (Click)
                 ClickButton();
             else
@@ -43,7 +41,7 @@ namespace PomodoroApp
 
         private void Start()
         {
-            counting = new Counting(settings.WorkTime, settings.BreakTime);
+            counting = new Counting(settings.WorkTime, settings.BreakTime, 5);
             PlaySound(false);
             counting.ChangeBreak += Counting_ChangeBreak;
             breakLabel.Text = ChangeBreakText();
@@ -53,8 +51,8 @@ namespace PomodoroApp
 
         private void PlaySound(bool BreakSound)
         {
-            SoundPlayer ticking = new SoundPlayer(@"tick.wav");
-            SoundPlayer breakSound = new SoundPlayer(@"Alarm.wav");
+            SoundPlayer ticking = new SoundPlayer(@"Data/tick.wav");
+            SoundPlayer breakSound = new SoundPlayer(@"Data/Alarm.wav");
             if (Properties.Settings.Default.ClockTicking && !BreakSound)
                 ticking.PlayLooping();
             else if (Properties.Settings.Default.AlarmSound && BreakSound)
@@ -65,9 +63,9 @@ namespace PomodoroApp
         {
             timer.Stop();
             string mess;
-            mess = $"Zakończyłeś sesję, ilość POMODORO {counting.GetBreakCounter()}";
+            mess = $"You interrupt, end cycles: {counting.GetCycles()}";
 
-            DialogResult result1 = MessageBox.Show(mess,  "Czy chcesz zrestartować pomodoro?",
+            DialogResult result1 = MessageBox.Show(mess,  "Do you want to restart pomodoro?",
                 MessageBoxButtons.YesNo);
             if (result1 == DialogResult.Yes)
             {
@@ -77,13 +75,13 @@ namespace PomodoroApp
             else if (result1 == DialogResult.No)
             {
                 AddStats();
-                this.Close();
+                Close();
             }
         }
 
         private void AddStats()
         {
-            Stats stats = new Stats(counting.GetBreakCounter(), counting.GetSumOfMinutes(), counting.GetSumOfBreakMinutes(), counting.GetBreakCounter() * 5, DateTime.Now);
+            Stats stats = new Stats(counting.GetCycles(), counting.GetSumOfMinutes(), counting.GetSumOfBreakMinutes(), DateTime.Now);
             stats.SaveToJson();
         }
 
@@ -92,34 +90,40 @@ namespace PomodoroApp
             if (progressBar.Value>0)
                 progressBar.Value--;
 
-            counting.SubtrackMinute();
+            counting.SubtractSecond();
             ChangeText();
         }
 
         private void ChangeText()
         {
-            timeLabel.Text = String.Format("Pozostało {0} sekund, {1} minut",
+            timeLabel.Text = String.Format("Left {0} seconds, {1} minutes",
                   counting.Seconds, counting.Minutes);
         }
         private string ChangeBreakText()
         {
-            if (counting.IsBreak)
-            {
-                PlaySound(true);
-                SetProgressBar(counting.Minutes);
-                return String.Format("Przerwa 5 minutowa");
-            }
-            else if (counting.IsLongBreak)
-            {
-                PlaySound(true);
-                SetProgressBar(counting.MinutesOfBreak);
-                return String.Format("Przerwa {0} minutowa");
-            }
-            else
-            {
-                SetProgressBar(counting.Minutes);
-                return "Do roboty!";
-            }
+
+            return counting.IsBreak?counting.IsLongBreak? 
+            $"Long break {counting.LongBreakMinutes}": 
+            $"Short break" : 
+            $"Go to work!";
+            //if (counting.IsBreak)
+            //{
+            //    PlaySound(true);
+            //    SetProgressBar(counting.Minutes);
+            //    return String.Format("Short break");
+            //}
+            //else if (counting.IsLongBreak)
+            //{
+            //    PlaySound(true);
+            //    SetProgressBar(counting.Minutes);
+            //    return String.Format("Long break {0} minutes", counting.LongBreakMinutes );
+            //}
+            //else
+            //{
+            //    PlaySound(false);
+            //    SetProgressBar(counting.Minutes);
+            //    return "Go to work!";
+            //}
         }
 
         private void SetProgressBar(int minutes)
@@ -128,23 +132,19 @@ namespace PomodoroApp
             progressBar.Value = minutes * 60;
         }
 
-        private void czasToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CzasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            settings.Activate();
-            //TODO Cannot reopen settings after save
-            settings.Show();
+                settings = new Settings();
+                settings.Show();
         }
 
-        private void statystykiToolStripMenuItem_Click(object sender, EventArgs e)
+        private void StatystykiToolStripMenuItem_Click(object sender, EventArgs e)
         {
             StatsForm stats = new StatsForm();
             stats.Show();
         }
 
-        private void zakończToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+        private void ZakończToolStripMenuItem_Click(object sender, EventArgs e) => Close();
     }
 
 }

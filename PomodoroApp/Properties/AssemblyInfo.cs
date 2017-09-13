@@ -5,10 +5,10 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("PomodoroApp")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Pomodoro")]
+[assembly: AssemblyDescription("Aplikacja Pomodoro")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Michał Targiel")]
 [assembly: AssemblyProduct("PomodoroApp")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]

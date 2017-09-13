@@ -63,9 +63,9 @@ namespace PomodoroApp.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream Alarm {
+        internal static System.IO.UnmanagedMemoryStream alarm {
             get {
-                return ResourceManager.GetStream("Alarm", resourceCulture);
+                return ResourceManager.GetStream("alarm", resourceCulture);
             }
         }
         

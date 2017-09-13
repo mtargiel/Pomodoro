@@ -14,15 +14,13 @@ namespace PomodoroApp
         public int Cycles { get; set; }
         public int WorkingMinutes { get; set; }
         public int BreakMinutes { get; set; }
-        public int ShortBreak { get; set; }
         public DateTime DateOfWork { get; set; }
 
-        public Stats(int cycles, int workMinutes, int breakMinutes, int shortBreak, DateTime dateOfWork)
+        public Stats(int cycles, int workMinutes, int breakMinutes, DateTime dateOfWork)
         {
             Cycles = cycles;
             WorkingMinutes = workMinutes;
             BreakMinutes = breakMinutes;
-            ShortBreak = shortBreak;
             DateOfWork = dateOfWork;
 
         }
@@ -34,7 +32,7 @@ namespace PomodoroApp
         public void SaveToJson()
         {
             List<Stats> Lista = new List<Stats>();
-            JsonRW<Stats> jsonRW = new JsonRW<Stats>(this, "file.json");
+            JsonRW<Stats> jsonRW = new JsonRW<Stats>(this, Properties.Settings.Default.jsonFileLocation);
             Lista = jsonRW.OpenFileJson(Lista);
             jsonRW.SaveToFileJson(Lista);
         }

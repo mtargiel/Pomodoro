@@ -14,11 +14,11 @@ namespace PomodoroApp
     {
         public Settings()
         {
-            //TODO settings not saving
             InitializeComponent();
             soundOfTicking.Checked = Properties.Settings.Default.ClockTicking;
-
-
+            breakSound.Checked = Properties.Settings.Default.AlarmSound;
+            setTimeOfBreak.Text = BreakTime.ToString();
+            workTimeBox.Text = WorkTime.ToString();
         }
         private int _breakTime = 15;
         public int BreakTime
@@ -45,39 +45,40 @@ namespace PomodoroApp
             }
         }
 
+        public int breakMinutes { get; private set; }
+
         private void saveButton_Click(object sender, EventArgs e)
         {
             BreakTime = GetBreakTime();
             WorkTime = GetWorkTime();
-            checkBoxState();
-            this.Close();
+            CheckBoxState();
+            Close();
         }
 
         private int GetBreakTime()
         {
-            int time;
-            int.TryParse(setTimeOfBreak.Text,out time);
+            int.TryParse(setTimeOfBreak.Text, out int time);
             return time;
         }
         private int GetWorkTime()
         {
-            int time;
-            int.TryParse(workTimeBox.Text, out time);
+            int.TryParse(workTimeBox.Text, out int time);
             return time;
         }
 
-        private void checkBoxState()
+        private void CheckBoxState()
         {
             if (soundOfTicking.Checked)
-                Properties.Settings.Default.AlarmSound = true;
+                Properties.Settings.Default.ClockTicking = true;
             else
-                Properties.Settings.Default.AlarmSound = false;
+                Properties.Settings.Default.ClockTicking = false;
             if (breakSound.Checked)
                 Properties.Settings.Default.AlarmSound = true;
             else
                 Properties.Settings.Default.AlarmSound = false;
 
             Properties.Settings.Default.Save();
+
         }
 
     }
