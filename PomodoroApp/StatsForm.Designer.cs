@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.cleanButton = new System.Windows.Forms.Button();
             this.statsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cleanButton = new System.Windows.Forms.Button();
             this.settingsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cyclesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.workingMinutesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -63,6 +63,10 @@
             this.dataGridView1.Size = new System.Drawing.Size(519, 208);
             this.dataGridView1.TabIndex = 0;
             // 
+            // statsBindingSource
+            // 
+            this.statsBindingSource.DataSource = typeof(PomodoroApp.Stats);
+            // 
             // cleanButton
             // 
             this.cleanButton.Location = new System.Drawing.Point(5, 226);
@@ -73,10 +77,6 @@
             this.cleanButton.UseVisualStyleBackColor = true;
             this.cleanButton.Click += new System.EventHandler(this.CleanButton_Click);
             // 
-            // statsBindingSource
-            // 
-            this.statsBindingSource.DataSource = typeof(PomodoroApp.Stats);
-            // 
             // settingsBindingSource
             // 
             this.settingsBindingSource.DataSource = typeof(PomodoroApp.Settings);
@@ -84,31 +84,31 @@
             // cyclesDataGridViewTextBoxColumn
             // 
             this.cyclesDataGridViewTextBoxColumn.DataPropertyName = "Cycles";
-            this.cyclesDataGridViewTextBoxColumn.HeaderText = "Ilość pomodoro";
+            this.cyclesDataGridViewTextBoxColumn.HeaderText = "Pomodoro cycles";
             this.cyclesDataGridViewTextBoxColumn.Name = "cyclesDataGridViewTextBoxColumn";
             this.cyclesDataGridViewTextBoxColumn.ReadOnly = true;
-            this.cyclesDataGridViewTextBoxColumn.Width = 104;
+            this.cyclesDataGridViewTextBoxColumn.Width = 113;
             // 
             // workingMinutesDataGridViewTextBoxColumn
             // 
             this.workingMinutesDataGridViewTextBoxColumn.DataPropertyName = "WorkingMinutes";
-            this.workingMinutesDataGridViewTextBoxColumn.HeaderText = "Łącznie minut pracy";
+            this.workingMinutesDataGridViewTextBoxColumn.HeaderText = "Work minutes";
             this.workingMinutesDataGridViewTextBoxColumn.Name = "workingMinutesDataGridViewTextBoxColumn";
             this.workingMinutesDataGridViewTextBoxColumn.ReadOnly = true;
-            this.workingMinutesDataGridViewTextBoxColumn.Width = 127;
+            this.workingMinutesDataGridViewTextBoxColumn.Width = 97;
             // 
             // breakMinutesDataGridViewTextBoxColumn
             // 
             this.breakMinutesDataGridViewTextBoxColumn.DataPropertyName = "BreakMinutes";
-            this.breakMinutesDataGridViewTextBoxColumn.HeaderText = "Łącznie minut przerw";
+            this.breakMinutesDataGridViewTextBoxColumn.HeaderText = "Break minutes";
             this.breakMinutesDataGridViewTextBoxColumn.Name = "breakMinutesDataGridViewTextBoxColumn";
             this.breakMinutesDataGridViewTextBoxColumn.ReadOnly = true;
-            this.breakMinutesDataGridViewTextBoxColumn.Width = 132;
+            this.breakMinutesDataGridViewTextBoxColumn.Width = 99;
             // 
             // dateOfWorkDataGridViewTextBoxColumn
             // 
             this.dateOfWorkDataGridViewTextBoxColumn.DataPropertyName = "DateOfWork";
-            this.dateOfWorkDataGridViewTextBoxColumn.HeaderText = "Data";
+            this.dateOfWorkDataGridViewTextBoxColumn.HeaderText = "Date";
             this.dateOfWorkDataGridViewTextBoxColumn.Name = "dateOfWorkDataGridViewTextBoxColumn";
             this.dateOfWorkDataGridViewTextBoxColumn.ReadOnly = true;
             this.dateOfWorkDataGridViewTextBoxColumn.Width = 55;

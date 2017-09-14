@@ -115,14 +115,14 @@
             this.plikToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.zakończToolStripMenuItem});
             this.plikToolStripMenuItem1.Name = "plikToolStripMenuItem1";
-            this.plikToolStripMenuItem1.Size = new System.Drawing.Size(38, 20);
-            this.plikToolStripMenuItem1.Text = "Plik";
+            this.plikToolStripMenuItem1.Size = new System.Drawing.Size(37, 20);
+            this.plikToolStripMenuItem1.Text = "File";
             // 
             // zakończToolStripMenuItem
             // 
             this.zakończToolStripMenuItem.Name = "zakończToolStripMenuItem";
             this.zakończToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.zakończToolStripMenuItem.Text = "Zakończ";
+            this.zakończToolStripMenuItem.Text = "Exit";
             this.zakończToolStripMenuItem.Click += new System.EventHandler(this.ZakończToolStripMenuItem_Click);
             // 
             // ustawieniaToolStripMenuItem1
@@ -131,21 +131,21 @@
             this.statystykiToolStripMenuItem,
             this.czasToolStripMenuItem});
             this.ustawieniaToolStripMenuItem1.Name = "ustawieniaToolStripMenuItem1";
-            this.ustawieniaToolStripMenuItem1.Size = new System.Drawing.Size(76, 20);
-            this.ustawieniaToolStripMenuItem1.Text = "Ustawienia";
+            this.ustawieniaToolStripMenuItem1.Size = new System.Drawing.Size(61, 20);
+            this.ustawieniaToolStripMenuItem1.Text = "Settings";
             // 
             // statystykiToolStripMenuItem
             // 
             this.statystykiToolStripMenuItem.Name = "statystykiToolStripMenuItem";
             this.statystykiToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.statystykiToolStripMenuItem.Text = "Statystyki";
+            this.statystykiToolStripMenuItem.Text = "Stats";
             this.statystykiToolStripMenuItem.Click += new System.EventHandler(this.StatystykiToolStripMenuItem_Click);
             // 
             // czasToolStripMenuItem
             // 
             this.czasToolStripMenuItem.Name = "czasToolStripMenuItem";
             this.czasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.czasToolStripMenuItem.Text = "Czas";
+            this.czasToolStripMenuItem.Text = "Properties";
             this.czasToolStripMenuItem.Click += new System.EventHandler(this.CzasToolStripMenuItem_Click);
             // 
             // Form1

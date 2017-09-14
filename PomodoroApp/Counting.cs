@@ -1,24 +1,93 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Pomodoro
 {
     public class Counting
     {
+        private bool _isBreak;
+        bool _isLongBreak;
+        private int _seconds;
+        int _startMinutes;
         private int BreakCounter;
         private int LongBreakCounter;
+
+        public Counting(int minutes, int longBreakMinutes, int breakMinutes)
+        {
+            StartMinutes = minutes;
+            LongBreakMinutes = longBreakMinutes;
+            BreakMinutes = breakMinutes;
+        }
+
         public event EventHandler ChangeBreak;
-        public int Minutes { get; private set; }
-        int _startMinutes;
-        public int StartMinutes { get { return _startMinutes; } private set { _startMinutes = value;  Minutes = value; } }
-        public int LongBreakMinutes { get; private set; }
+
+        private void SetBreak()
+        {
+            if (BreakCounter >= 3)
+            {
+                LongBreakCounter++;
+                BreakCounter = 0;
+                Minutes = LongBreakMinutes;
+                IsLongBreak = true;
+            }
+            else
+            {
+                Minutes = BreakMinutes;
+                BreakCounter++;
+            }
+            IsBreak = true;
+        }
+
+        private void SetWork()
+        {
+            Minutes = StartMinutes;
+            IsLongBreak = false;
+            IsBreak = false;
+
+        }
+
+        private void SubtractMinute()
+        {
+            if (Minutes <= 0 && Seconds <= 0 && IsBreak)
+            {
+                SetWork();
+            }
+            else if (Minutes <= 0 && Seconds <= 0 && !IsBreak)
+            {
+                SetBreak();
+            }
+            Minutes--;
+        }
+
+        internal int GetSumOfBreakMinutes()
+        {
+            if (LongBreakCounter >= 1)
+                return (LongBreakCounter * LongBreakMinutes) + (BreakMinutes * 3);
+            else
+                return BreakCounter * BreakMinutes;
+        }
+
+        internal int GetSumOfMinutes()
+        {
+            if (LongBreakCounter >= 1)
+                return _startMinutes * LongBreakCounter * BreakCounter;
+            else
+                return _startMinutes * BreakCounter;
+        }
+
+        public int GetCycles() => LongBreakCounter;
+
+        public void SubtractSecond()
+        {
+            if (Seconds <= 0)
+            {
+                SubtractMinute();
+                Seconds = 60;
+            }
+            Seconds--;
+        }
+
         public int BreakMinutes { get; private set; }
-        private bool _isBreak;
-        private int _seconds;
-        public int Seconds { get => _seconds; set => _seconds = value; }
 
         public bool IsBreak
         {
@@ -32,72 +101,21 @@ namespace Pomodoro
                 ChangeBreak(this, null);
             }
         }
-        public bool IsLongBreak { get; set; }
-        public Counting(int minutes, int longBreakMinutes, int breakMinutes)
+        public bool IsLongBreak
         {
-            StartMinutes = minutes;
-            LongBreakMinutes = longBreakMinutes;
-            BreakMinutes = breakMinutes;
-        }
-        private void SubtractMinute()
-        {
-            if (Minutes <= 0 && IsBreak && Seconds <= 0)
+            get
             {
-                SetWork();
+                return _isLongBreak;
             }
-            else if (Minutes <= 0 && !IsBreak && Seconds <= 0)
+            set
             {
-                SetBreak();
-            }
-            Minutes--;
-        }
-
-        private void SetBreak()
-        {
-            IsBreak = true;
-            if (BreakCounter >= 3)
-            {
-                IsLongBreak = true;
-                LongBreakCounter++;
-                BreakCounter = 0;
-                Minutes = LongBreakMinutes;
-            }
-            else
-            {
-                Minutes = BreakMinutes;
-                BreakCounter++;
+                _isLongBreak = value;
             }
         }
-
-        public void SubtractSecond()
-        {
-            if (Seconds <= 0)
-            {
-                SubtractMinute();
-                Seconds = 60;
-            }
-            Seconds--;
-        }
-
-        private void SetWork()
-        {
-            if (IsLongBreak)
-                IsLongBreak = false;
-            IsBreak = false;
-            Minutes = StartMinutes;
-        }
-
-        public int GetCycles() => LongBreakCounter;
-
-        internal int GetSumOfMinutes()
-        {
-            throw new NotImplementedException();
-        }
-
-        internal int GetSumOfBreakMinutes()
-        {
-            throw new NotImplementedException();
-        }
+        public int LongBreakMinutes { get; private set; }
+        public int Minutes { get; private set; }
+        public int Seconds { get => _seconds; set => _seconds = value; }
+        public int StartMinutes { get { return _startMinutes; } private set { _startMinutes = value; Minutes = value; } }
     }
 
 }

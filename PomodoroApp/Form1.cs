@@ -14,58 +14,59 @@ namespace PomodoroApp
 {
     public partial class Form1 : Form
     {
+        new bool Click;
 
 
         Counting counting;
         Settings settings = new Settings();
-        new bool Click;
+
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void Counting_ChangeBreak(object sender, EventArgs e) => breakLabel.Text = ChangeBreakText();
-
-        private void startButton_Click(object sender, EventArgs e)
+        private void AddStats()
         {
-
-            startButton.Text = "Interrupt";
-            if (Click)
-                ClickButton();
+            Stats stats = new Stats(counting.GetCycles(), counting.GetSumOfMinutes(), counting.GetSumOfBreakMinutes(), DateTime.Now);
+            stats.SaveToJson();
+        }
+        private string ChangeBreakText()
+        {
+            if (counting.IsBreak)
+            {
+                if (counting.IsLongBreak)
+                {
+                    SetProgressBar(counting.Minutes);
+                    return "Long break";
+                }
+                else
+                {
+                    SetProgressBar(counting.Minutes);
+                    return "Short break";
+                }
+            }
             else
             {
-                Start();
-                Click = true;
+                SetProgressBar(counting.Minutes);
+                return "Go to work!";
             }
+
         }
 
-        private void Start()
+        private void ChangeText()
         {
-            counting = new Counting(settings.WorkTime, settings.BreakTime, 5);
-            PlaySound(false);
-            counting.ChangeBreak += Counting_ChangeBreak;
-            breakLabel.Text = ChangeBreakText();
-            timer.Start();
-            SetProgressBar(counting.Minutes);
-        }
-
-        private void PlaySound(bool BreakSound)
-        {
-            SoundPlayer ticking = new SoundPlayer(@"Data/tick.wav");
-            SoundPlayer breakSound = new SoundPlayer(@"Data/Alarm.wav");
-            if (Properties.Settings.Default.ClockTicking && !BreakSound)
-                ticking.PlayLooping();
-            else if (Properties.Settings.Default.AlarmSound && BreakSound)
-                breakSound.Play();
+            timeLabel.Text = String.Format("Left {0} seconds, {1} minutes",
+                  counting.Seconds, counting.Minutes);
         }
 
         private void ClickButton()
         {
+
             timer.Stop();
             string mess;
             mess = $"You interrupt, end cycles: {counting.GetCycles()}";
 
-            DialogResult result1 = MessageBox.Show(mess,  "Do you want to restart pomodoro?",
+            DialogResult result1 = MessageBox.Show(mess, "Do you want to restart pomodoro?",
                 MessageBoxButtons.YesNo);
             if (result1 == DialogResult.Yes)
             {
@@ -79,69 +80,82 @@ namespace PomodoroApp
             }
         }
 
-        private void AddStats()
+        private void Counting_ChangeBreak(object sender, EventArgs e)
         {
-            Stats stats = new Stats(counting.GetCycles(), counting.GetSumOfMinutes(), counting.GetSumOfBreakMinutes(), DateTime.Now);
-            stats.SaveToJson();
+            breakLabel.Text = ChangeBreakText();
+            if (!counting.IsBreak || !counting.IsLongBreak)
+            {
+                PlayAlarm();
+                PlaySound();
+            }
+            else
+            {
+                PlayAlarm();
+            }
         }
 
-        private void timer_Tick(object sender, EventArgs e)
+        private void CzasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (progressBar.Value>0)
-                progressBar.Value--;
-
-            counting.SubtractSecond();
-            ChangeText();
+            settings = new Settings();
+            settings.Show();
         }
 
-        private void ChangeText()
+        private static void PlayAlarm()
         {
-            timeLabel.Text = String.Format("Left {0} seconds, {1} minutes",
-                  counting.Seconds, counting.Minutes);
+            SoundPlayer breakSound = new SoundPlayer(@"Data/Alarm.wav");
+            if (Properties.Settings.Default.AlarmSound)
+                breakSound.Play();
         }
-        private string ChangeBreakText()
-        {
 
-            return counting.IsBreak?counting.IsLongBreak? 
-            $"Long break {counting.LongBreakMinutes}": 
-            $"Short break" : 
-            $"Go to work!";
-            //if (counting.IsBreak)
-            //{
-            //    PlaySound(true);
-            //    SetProgressBar(counting.Minutes);
-            //    return String.Format("Short break");
-            //}
-            //else if (counting.IsLongBreak)
-            //{
-            //    PlaySound(true);
-            //    SetProgressBar(counting.Minutes);
-            //    return String.Format("Long break {0} minutes", counting.LongBreakMinutes );
-            //}
-            //else
-            //{
-            //    PlaySound(false);
-            //    SetProgressBar(counting.Minutes);
-            //    return "Go to work!";
-            //}
+        private void PlaySound()
+        {
+            SoundPlayer ticking = new SoundPlayer(@"Data/tick.wav");
+            if (Properties.Settings.Default.ClockTicking)
+                ticking.PlayLooping();
         }
 
         private void SetProgressBar(int minutes)
         {
             progressBar.Maximum = minutes * 60;
             progressBar.Value = minutes * 60;
+
         }
 
-        private void CzasToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Start()
         {
-                settings = new Settings();
-                settings.Show();
+            counting = new Counting(settings.WorkTime, settings.BreakTime, 5);
+            counting.ChangeBreak += Counting_ChangeBreak;
+            breakLabel.Text = ChangeBreakText();
+            timer.Start();
+            SetProgressBar(counting.Minutes);
+        }
+
+        private void startButton_Click(object sender, EventArgs e)
+        {
+            PlaySound();
+            startButton.Text = "Interrupt";
+            if (Click)
+                ClickButton();
+            else
+            {
+                Start();
+                Click = true;
+            }
         }
 
         private void StatystykiToolStripMenuItem_Click(object sender, EventArgs e)
         {
             StatsForm stats = new StatsForm();
             stats.Show();
+        }
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            if (progressBar.Value > 0)
+                progressBar.Value--;
+
+            counting.SubtractSecond();
+            ChangeText();
         }
 
         private void ZakończToolStripMenuItem_Click(object sender, EventArgs e) => Close();
